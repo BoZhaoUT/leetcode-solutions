@@ -17,12 +17,13 @@ var nextPermutation = function(nums) {
     }
     // the nums is in descending order
     if (i === -1) {
+        console.log("reversing")
         return nums.reverse()
     }
     // 
     i = nums.length - 1
     let nextNumIndex
-    while (i >= 0) {
+    while (i > firstNonIncreasingNumIndex) {
         if (nums[i] > nums[firstNonIncreasingNumIndex]) {
             if (!nextNumIndex || nums[i] < nums[nextNumIndex]) {
                 nextNumIndex = i
@@ -30,14 +31,17 @@ var nextPermutation = function(nums) {
         }
         i--
     }
-    
     // swap two nums
-    const temp = nums[nextNumIndex]
-    nums[nextNumIndex] = nums[firstNonIncreasingNumIndex]
-    nums[firstNonIncreasingNumIndex] = temp
+    swap(nums, nextNumIndex, firstNonIncreasingNumIndex)
     
-    return [].concat(nums.slice(0, firstNonIncreasingNumIndex + 1), nums.slice(2).reverse())
+    for (i = 0; i < Math.floor((nums.length - 1 - firstNonIncreasingNumIndex) / 2) ; i++) {
+        swap(nums, i + firstNonIncreasingNumIndex + 1, nums.length - 1 - i)
+    }
 };
+
+var swap = function(nums, i, j) {
+    [nums[i], nums[j]] = [nums[j], nums[i]]
+}
 
 // algorithm from discussions
 // input: 2,3,6,5,4,1
@@ -47,6 +51,6 @@ var nextPermutation = function(nums) {
 
 // We cannot find the number, all the numbers increasing in a ascending order. This means this permutation is the last permutation, we need to rotate back to the first permutation. So we reverse the whole array, for example, 6,5,4,3,2,1 we turn it to 1,2,3,4,5,6.
 
-// We can find the number, then the next step, we will start from right most to leftward, try to find the first number which is larger than 3, in this case it is 4.
+// We can find the number, then the next step, we will start from right most to 3, try to find the first number which is larger than 3, in this case it is 4. This search does not include any numbers on the left hand of 3
 // Then we swap 3 and 4, the list turn to 2,4,6,5,3,1.
 // Last, we reverse numbers on the right of 4, we finally get 2,4,1,3,5,6.
