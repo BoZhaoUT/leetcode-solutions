@@ -36,10 +36,7 @@ var nextPermutation = function(nums) {
     nums[nextNumIndex] = nums[firstNonIncreasingNumIndex]
     nums[firstNonIncreasingNumIndex] = temp
     
-    const keep = nums.slice(0, firstNonIncreasingNumIndex + 1)
-    const reversed = nums.slice(firstNonIncreasingNumIndex + 1, nums.length).reverse()
-    const result = keep.concat(reversed)
-    return result
+    return [].concat(nums.slice(0, firstNonIncreasingNumIndex + 1), nums.slice(2).reverse())
 };
 
 // algorithm from discussions
