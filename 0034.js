@@ -4,7 +4,6 @@
  * @return {number[]}
  */
 var searchRange = function(nums, target) {
-    
     // initial search
     const initialSearch = binarySearch(nums, 0, nums.length - 1, target)
     if (initialSearch === -1) {
