@@ -10,7 +10,7 @@ var permute = function(nums) {
     } else {
         const result = []
         nums.forEach((_, i) => {
-            let others = [...nums]
+            const others = [...nums]
             others.splice(i, 1)
             const permuted = permute(others)
             permuted.forEach(arr => arr.push(nums[i]))
