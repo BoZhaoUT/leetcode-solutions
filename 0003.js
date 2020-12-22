@@ -5,7 +5,6 @@
 var lengthOfLongestSubstring = function(s) {
     let known = []
     let result = 0
-    let longest = 0
     for (char of s) {
         const index = known.indexOf(char)
         if (index >= 0) {
