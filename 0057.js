@@ -7,20 +7,30 @@ var insert = function(intervals, newInterval) {
     let i = 0;
     let start
     let end
-    while (i < intervals.length && end === undefined) {
+    const result = []
+    while (i < intervals.length) {
         let curr = intervals[i]
-        if (start === undefined && newInterval[0] < curr[1]) {
+        // smaller, no overlap
+        if (curr[1] < newInterval[0]) {
+            result.push(curr)
+        }
+        // smaller, overlap
+        if (start === undefined && newInterval[0] <= curr[1]) {
             start = i
         }
-        if (newInterval[1] < curr[0]) {
-            end = i - 1
-        } else if (newInterval[1] < curr[1]) {
+        // bigger, overlap
+        if (end === undefined && newInterval[1] <= curr[1]) {
             end = i
+            result.push([intervals[start][0], intervals[end][1]])
         }
+        // bigger, no overlap
+        if (newInterval[1] < curr[0]) {
+            result.push(curr)
+        }
+        console.log(i, result)
         i++
     }
-    
-    return [start, end]
+    return result
 };
 
-console.log(insert([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]))
+
