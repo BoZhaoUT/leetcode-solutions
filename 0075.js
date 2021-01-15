@@ -10,15 +10,13 @@ var sortColors = function(nums) {
     let oneIndex = 0
     let twoIndex = nums.length - 1
     let i = 0
-    while (i < nums.length) {
-        let curr = nums[i]
-        console.log("i", i, "curr", curr, "zero", zeroIndex, "one", oneIndex, "two", twoIndex, ",", nums)
-        if (curr === 0) {
+    while (i < nums.length && i <= twoIndex) {
+        if (nums[i] === 0) {
             swap(i, zeroIndex)
             oneIndex++
             zeroIndex++
             i++
-        } else if (curr === 1) {
+        } else if (nums[i] === 1) {
             if (nums[oneIndex] === 0) {
                 oneIndex++
             } else {
@@ -26,20 +24,14 @@ var sortColors = function(nums) {
                 oneIndex++
                 i++
             }
-        } else if (curr === 2) {
+        } else if (nums[i] === 2) {
             if (nums[twoIndex] === 2) {
                 twoIndex--
-            } else {
+            }
+            else {
                 swap(i, twoIndex)
-                i++
             }
         }
     }
 };
 
-
-// let lst = [2,0,2,1,1,0]
-const lst = [1,2,0]
-sortColors(lst) // [0,0,1,1,2,2]
-
-console.log(lst)
