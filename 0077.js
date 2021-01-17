@@ -3,25 +3,25 @@
  * @param {number} k
  * @return {number[][]}
  */
-var combine = function(n, k, start = 1) {
-    console.log(n , k , start)
-    const result = []
+var combine = function(n, k) {
+    let result = []
     // base case
-    if (k === 1) {
-        while (start <= n) {
-            result.push([start])
-            start++
+    if (n === 1) {
+        return [[1]]
+    } else if (k === 1) {
+        while (n >= 1) {
+            result.push([n])
+            n--
         }
-        console.log("result", result)
+        return result
+    } else {
+        while (n >= k) {
+            const others = combine(n - 1, k - 1)
+            others.forEach(other => other.push(n))
+            result = result.concat(others)
+            n--
+        }
         return result
     }
-
-    let others
-    // recursivce case
-    for (let i = 1; i <= n - k + 1; i++) {
-        others = combine(n, k - 1, start + 1)
-        others.forEach(curr => curr.push(i))
-    }
-    return others
 };
 
