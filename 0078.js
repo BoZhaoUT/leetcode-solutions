@@ -29,3 +29,17 @@ const combine = (nums, k) => {
     } 
     return result
 }
+
+// solution 2
+const generatePowerset = (curr, start, powerset, nums) => {
+    powerset.push(curr)
+    for (let i = start; i < nums.length; i++) {
+        generatePowerset([...curr, nums[i]], i + 1, powerset, nums)
+    }
+}
+
+const subsets = nums => {
+    const result = []
+    generatePowerset([], 0, result, nums)
+    return result
+}
