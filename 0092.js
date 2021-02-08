@@ -12,37 +12,27 @@
  * @return {ListNode}
  */
 var reverseBetween = function(head, m, n) {
-    const test = reverse(head)
-    console.log("test", test)
-    let prev
+    let prev = null
     let curr = head
     let i = 1
     while (i < m) {
-        prev = prev ? head : curr
+        prev = curr
         curr = curr.next
         i++
     }
-    const newHead = reverse(curr, n - m + 1)
-
-    console.log("prev", prev.val)
-    console.log("curr", curr.val)
-    console.log("head", head)
-    console.log("new head", newHead)
-};
-
-// reverse n nodes
-const reverse = (head) => {
-    if (head.next === null) {
-        return head
-    }
-    let prev = head
-    let curr = head.next
-    head.next.next = null
-    while (curr) {
+    const before = prev
+    const middleTail = curr
+    prev = curr
+    curr = curr.next
+    while (i < n) {
         const next = curr.next
         curr.next = prev
         prev = curr
         curr = next
+        i++
     }
-    return curr
-}
+    before.next = prev
+    const after = curr.next
+    middleTail.next = curr
+    return head
+};
