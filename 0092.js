@@ -12,6 +12,9 @@
  * @return {ListNode}
  */
 var reverseBetween = function(head, m, n) {
+    if (!head.next || m === n) {
+        return head
+    }
     let prev = null
     let curr = head
     let i = 1
