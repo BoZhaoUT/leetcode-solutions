@@ -34,8 +34,14 @@ var reverseBetween = function(head, m, n) {
         curr = next
         i++
     }
-    before.next = prev
-    const after = curr.next
+    // m === 1, reversing starts from head
+    if (before) {
+        before.next = prev
+    }
+    // n === length, reversing ends at tail
+    if (curr) {
+        const after = curr.next
+    }
     middleTail.next = curr
-    return head
+    return m === 1 ? prev : head
 };
