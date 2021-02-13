@@ -3,20 +3,26 @@
  * @return {number}
  */
 var numDecodings = function(s) {
-    const dp = new Array(s.length + 1)
+    if (s[0] === "0") {
+        return 0
+    }
+    const dp = new Array(s.length + 1).fill(0)
     dp[0] = 1
     dp[1] = 1
-    for (let i = 2; i < s.length; i++) {
-        const first = +s.substring(i - 1, i)
+    for (let i = 2; i <= s.length; i++) {
+        const first = s.substring(i - 1, i)
         const second = +s.substring(i - 2, i)
-        if (first >= 1 && first <= 9) {
+        // any other digit can be a valid char by itself
+        // i.e. all valid single digit letter
+        if (first !== "0") {
             dp[i] += dp[i - 1]
         }
-        if (second >= 10 && second <= 26) {
+        // all valid 2 digit letters
+        if (second > 10 && second <= 26) {
             dp[i] += dp[i - 2]
         }
     }
-    return dp[n]
+    return dp[s.length]
 };
 
 // public class Solution {
