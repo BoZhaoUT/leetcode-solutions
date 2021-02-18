@@ -11,7 +11,7 @@ var mostCommonWord = function(paragraph, banned) {
     let word = ""
     while (i < paragraph.length + 1) {
         char = paragraph[i]
-        if (char && char.match(/[a-zA-Z]/)) {
+        if (char && /[a-zA-Z]/.test(char)) {
             word += char
         } else if (word) {
             word = word.toLowerCase()
