@@ -11,16 +11,31 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
+    // special case: tree is empty
+    if (!root) {
+        return []
+    }
     const result = []
-    const nodes = [root]
+    let curr = [root] // nodes in current level
+    let next = [] // nodes in next level
     let values = []
-    while (nodes.length) {
-        nodes.forEach(node => {
-            values.push(node ? node.val : null)
-            nodes.push(node.left)
-            nodes.push(node.right)
+    while (curr.length) {
+        curr.forEach(node => {
+            values.push(node.val)
+            if (node.left) {
+                next.push(node.left)
+            }
+            if (node.right) {
+                next.push(node.right)
+            }
         })
-        result.push(values)
+        if (values.length) {
+            result.push(values)
+        }
+        curr = next
+        next = []
+        values = []
     }
     return result
 };
+
