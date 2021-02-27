@@ -28,8 +28,34 @@ class TreeNode {
         }
         return nodes[0]
     }
+
+    levelOrder() {
+        const result = []
+        let curr = [this] // nodes in current level
+        let next = [] // nodes in next level
+        let values = []
+        while (curr.length) {
+            curr.forEach(node => {
+                values.push(node.val)
+                if (node.left) {
+                    next.push(node.left)
+                }
+                if (node.right) {
+                    next.push(node.right)
+                }
+            })
+            if (values.length) {
+                result.push(values)
+            }
+            curr = next
+            next = []
+            values = []
+        }
+        return result
+    }
 }
+
 
 const tree = new TreeNode([3,9,20,null,null,15,7])
 
-console.log(levelOrder(tree))
+console.log(tree.levelOrder())
