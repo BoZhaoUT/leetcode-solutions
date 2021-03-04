@@ -14,16 +14,25 @@ var canFinish = function(numCourses, prerequisites) {
         } else {
             courseToPrerequisites[course].add(prerequisite)
         }
-        // the circular requirement
+        // circular requirement
         if (courseToPrerequisites[prerequisite] && courseToPrerequisites[prerequisite].has(course)) {
             return false
         }
         i++
     }
 
-    const checkeCircularPrerequisite = (course, courses) => {
-        // base case: this course has no prerequisite OR it has no circular prerequisite
-        if (!courseToPrerequisites[course] || checked[course]) {
+    // all courses have prerequisites, there must be at least one circular prerequisite
+    if (Object.keys(courseToPrerequisites).length === numCourses) {
+        return false
+    }
+
+    // check the prerequisites of all courses
+    i = 0
+    let courses = new Set() // a set of courses that depend on i
+
+    const checkeCircularPrerequisite = (course) => {
+        // base case: this course has no prerequisite
+        if (!courseToPrerequisites[course]) {
             return true
         }
         // base case: found circular prerequisite
@@ -31,17 +40,25 @@ var canFinish = function(numCourses, prerequisites) {
             return false
         }
 
-        for (prerequisite of courseToPrerequisites[course]) {
-            checkeCircularPrerequisite(course, new Set([ ...courses, course]))
+        
+        let p = 0 // index of prerequisite
+        // verify if any of the prerequisite appears to be circular
+        // console.log(courseToPrerequisites[p])
+        const coursePrerequisites = [ ...courseToPrerequisites[course] ] 
+        while (result && p < coursePrerequisites.length) {
+            courses.add(course)
+            result = checkeCircularPrerequisite(coursePrerequisites[p])
+            courses.delete(course)
+            p++
         }
-        checked[course] = true
+        // all prerequisite of this course can be met
+        delete courseToPrerequisites[course]
+        return result
     }
 
-    // check the prerequisites of all courses
-    const checked = Array(numCourses).fill(false)
-    i = 0
-    while (i < checked.length) {
-        checkeCircularPrerequisite(i, new Set())
+    while (result && i < numCourses) {
+        result = checkeCircularPrerequisite(i)
+        courses = new Set()
         i++
     }
     return result
@@ -50,4 +67,3 @@ var canFinish = function(numCourses, prerequisites) {
 console.log(canFinish(2, [[1,0]]))
 console.log(canFinish(2, [[1,0], [0,1]]))
 console.log(canFinish(3, [[1,0],[0,2],[2,1]]))
-
