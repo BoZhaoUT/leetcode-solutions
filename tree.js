@@ -16,7 +16,7 @@ class TreeNode {
         let i = values.length - 1
         let nodes = new Array(values.length).fill(null)
         while (i >= 0) {
-            if (values[i]) {
+            if (values[i] !== null) {
                 const leftChild = nodes[2 * i + 1] || null
                 const rightChild = nodes[2 * i + 2] || null
                 const newNode = new TreeNode(values[i], leftChild, rightChild)

@@ -11,19 +11,28 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
- var lowestCommonAncestor = function(root, p, q, foundP=false, foundQ=false) {
-    if (root.val === p.val) {
-        foundP = true
-    } else if (root.val === q.val) {
-        foundQ = true
+ var lowestCommonAncestor = function(root, p, q) {
+    let result
+    const findNodes = node => {
+        // check left child
+        const [leftHasP, leftHasQ] = node.left ? findNodes(node.left) : [false, false]
+        if (!result && leftHasP && leftHasQ) {
+            result = node
+        }
+        // check right child
+        const [rightHasP, rightHasQ] = node.right ? findNodes(node.right) : [false, false]
+        if (!result && rightHasP && rightHasQ) {
+            result = node
+        }
+
+        const hasP = leftHasP || rightHasP || node.val === p.val
+        const hasQ = leftHasQ || rightHasQ || node.val === q.val
+
+        if (!result && hasP && hasQ) {
+            result = node
+        }
+        return [hasP, hasQ]
     }
-    if (foundP && foundQ) {
-        return root
-    }
-    if (root.left && lowestCommonAncestor(root.left, p, q)) {
-        return root.left
-    }
-    if (root.right && lowestCommonAncestor(root.right, p, q)) {
-        return root.right
-    }
+    findNodes(root)
+    return result
 };
