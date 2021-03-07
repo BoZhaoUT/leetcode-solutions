@@ -14,8 +14,6 @@
     let result = 0
 
     const findUsableLength = node => {
-        const isLeaf = self.left || self.right
- 
         // calculate usable length
         const leftDiameter = node.left ? findUsableLength(node.left) + 1 : 0
         const rightDiameter = node.right ? findUsableLength(node.right) + 1 : 0
