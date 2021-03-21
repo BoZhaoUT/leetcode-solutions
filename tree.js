@@ -59,3 +59,12 @@ class TreeNode {
 const tree = new TreeNode([3,9,20,null,null,15,7])
 
 console.log(tree.levelOrder())
+
+
+/*
+ *                  3
+ *              9      20
+ *            .   .  15  7
+ * 
+ * 
+ */
