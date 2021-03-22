@@ -1,5 +1,3 @@
-
-
 class Heap {
     constructor() {
         this.nodes = []
