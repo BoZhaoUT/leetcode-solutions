@@ -53,18 +53,58 @@ class TreeNode {
         }
         return result
     }
+
+    inOrder() {
+        if (this.left) {
+            this.left.inOrder()
+        }
+        console.log(this.val)
+        if (this.right) {
+            this.right.inOrder()
+        }
+    }
+
+    preOrder() {
+        console.log(this.val)
+        if (this.left) {
+            this.left.preOrder()
+        }
+        if (this.right) {
+            this.right.preOrder()
+        }
+    }
+
+    postOrder() {
+        if (this.left) {
+            this.left.postOrder()
+        }
+        if (this.right) {
+            this.right.postOrder()
+        }
+        console.log(this.val)
+    }
 }
 
 
-const tree = new TreeNode([3,9,20,null,null,15,7])
-
-console.log(tree.levelOrder())
-
-
+// const tree = new TreeNode([3,9,20,null,null,15,7])
+// console.log(tree.levelOrder())
 /*
  *                  3
  *              9      20
  *            .   .  15  7
  * 
- * 
+ */
+
+
+
+
+
+const tree = new TreeNode([1,2,3,4,5])
+// tree.inOrder() // 4, 2, 5, 1, 3
+// tree.preOrder() // 1, 2, 4, 5, 3
+// tree.postOrder() // 4, 5, 2, 3 ,1
+/*
+ *                  1
+ *              2      3
+ *            4   5
  */
