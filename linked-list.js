@@ -59,6 +59,8 @@ class ListNode {
     }
 }
 
+module.exports = ListNode
+
 // const node = new ListNode(0)
 // node.print()
 

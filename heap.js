@@ -98,3 +98,5 @@ class MaxHeap extends Heap {
         this.bubbleDown(orders[0])
     }
 }
+
+module.exports = Heap

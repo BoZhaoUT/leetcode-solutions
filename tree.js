@@ -4,11 +4,13 @@ class TreeNode {
             this.val = val
             this.left = left
             this.right = right
-        } else { // from a list of values
+        } else if (Array.isArray(val)) { // from a list of values
             const root = this.fromList(val)
             this.val = root.val
             this.left = root.left
             this.right = root.right
+        } else {
+            console.log(`val is not recognized. Its type is ${typeof val}`)
         }
     }
 
@@ -85,6 +87,7 @@ class TreeNode {
     }
 }
 
+module.exports = TreeNode
 
 // const tree = new TreeNode([3,9,20,null,null,15,7])
 // console.log(tree.levelOrder())
@@ -99,7 +102,7 @@ class TreeNode {
 
 
 
-const tree = new TreeNode([1,2,3,4,5])
+// const tree = new TreeNode([1,2,3,4,5])
 // tree.inOrder() // 4, 2, 5, 1, 3
 // tree.preOrder() // 1, 2, 4, 5, 3
 // tree.postOrder() // 4, 5, 2, 3 ,1

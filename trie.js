@@ -30,6 +30,8 @@ class Trie {
     }
 }
 
+module.exports = Trie
+
 // const trie = new Trie()
 
 // trie.addWord('abc')
