@@ -14,4 +14,7 @@ const arrayShallow = [...array]
 // create a shallow copy of a matrix
 const matrixShallow = [...matrix.map(row => [...row])]
 
-console.log(matrix)
+// get normalized charCode
+const charCode = 'b'.charCodeAt(0) - 'a'.charCodeAt(0)
+
+console.log(charCode)
