@@ -14,21 +14,32 @@ const getNextDay = cells => {
  * @return {number[]}
  */
 var prisonAfterNDays = function(cells, n) {
-    const knowns = {}
+    const cellsSet = new Set()
+    const cellsArray = []
     cells = cells.join("")
     let day = 0
-    while (day < n && knowns[cells] === undefined) {
-        knowns[cells] = day
+    while (day < n && !cellsSet.has(cells)) {
+        cellsSet.add(cells)
+        cellsArray.push(cells)
         cells = getNextDay(cells)
         day++
     }
+    // console.log(cellsSet)
+    // console.log(cellsArray)
+    let result
     if (day === n) {
-        return cells.split("")
+        result = cells
     } else {
-        day = n % day
-        return prisonAfterNDays(cells.split(""), day)
+        // a cycle is found
+        const cellIndex = cellsArray.findIndex(element => element === cells)
+        const cycleLength = cellsArray.length - cellIndex
+        day = n % cycleLength
+        console.log({cycleLength, day, cellsArray})
+        result = cellsArray[day]
     }
+    return result.split("")
 };
 
-console.log(prisonAfterNDays([0,1,0,1,1,0,0,1], 777))
-
+// console.log(prisonAfterNDays([0,1,0,1,1,0,0,1], 777)) 
+// console.log(prisonAfterNDays([0,0,1,1,1,1,0,0], 8))
+console.log(prisonAfterNDays([1,1,0,1,1,0,1,1], 6))
