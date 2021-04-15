@@ -34,8 +34,9 @@ var prisonAfterNDays = function(cells, n) {
         const cellIndex = cellsArray.findIndex(element => element === cells)
         const cycleLength = cellsArray.length - cellIndex
         day = n % cycleLength
-        console.log({cycleLength, day, cellsArray})
-        result = cellsArray[day]
+        
+        console.log({cycleLength, day, cellsArray, cellIndex})
+        result = cellsArray[day + cellIndex]
     }
     return result.split("")
 };
