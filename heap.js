@@ -99,4 +99,4 @@ class MaxHeap extends Heap {
     }
 }
 
-module.exports = Heap
+module.exports = { MinHeap, MaxHeap }
