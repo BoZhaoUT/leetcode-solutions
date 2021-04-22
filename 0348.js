@@ -5,9 +5,7 @@ class TicTacToe {
         this.row = new Array(n)
         this.hill = 0 // bottom-left to top-right diangal
         this.dale = 0 // top-left to bottom-right diagnal
-        // this.turn = 1 // 1: player 1, -1: player 2
     }
-
 
     // row:    [0, 0, 3]
     // column: [1, 1, 1]
@@ -19,7 +17,7 @@ class TicTacToe {
     /*
      * 0 - no win
      * 1 - player 1 wins
-     * 2 - player 2 wins
+     * -1 - player 2 wins
      */
     move(row, column, player) {
         // update the status of row, column and dale
@@ -28,14 +26,19 @@ class TicTacToe {
         if (row === column) {
             this.dale += player
         }
-        if (true) {
+        if (row + column === this.size - 1) {
             this.hill += player
         }
 
-        let result = 0
-
-        // switch turn
-        // this.turn = this.turn === 1 ? -1 : 1
+        // check winning condition
+        const winningCondition = player * n
+        if (this.row[row] === winningCondition
+            || this.column[column] === winningCondition
+            || this.hill === winningCondition
+            || this.dale === winningCondition) {
+                return player
+            }
+        return 0
     }
 }
 
