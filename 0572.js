@@ -11,7 +11,7 @@
  * @param {TreeNode} t
  * @return {boolean}
  */
-var isSubtree = function(s, t) {
+ var isSubtree = function(s, t) {
     // empty tree is a subtree of anytree
     if (!t) {
         return true
@@ -21,9 +21,9 @@ var isSubtree = function(s, t) {
         return false
     }
     if (isSameTree(s, t)) {
-        return tree
+        return true
     }
-    return isSameTree(s.left, t) || isSameTree(s.right, t)
+    return isSubtree(s.left, t) || isSubtree(s.right, t)
 };
 
 const isSameTree = (s, t) => {
@@ -32,7 +32,7 @@ const isSameTree = (s, t) => {
         return true
     }
     // only 1 tree is empty
-    if ((s && !t) || (!s &&t)) {
+    if ((s && !t) || (!s && t)) {
         return false
     }
     // both trees are not empty
