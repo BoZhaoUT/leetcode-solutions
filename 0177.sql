@@ -2,7 +2,7 @@ CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
   -- LIMIT doesn't recognize expressions, so calculation must be done in advance
   -- M is the offset in the query
-  DECLARE M] INT;
+  DECLARE M INT;
   SET M = N - 1;
 
   RETURN (
