@@ -10,11 +10,11 @@ object Solution {
     def hasPathSum(root: TreeNode, targetSum: Int): Boolean = {
         // empty tree
         if (root == null) {
-            return targetSum == 0
+            return false
         }
         // is leaf
         if (root.left == null && root.right == null) {
-            return targetSum == 0
+            return targetSum == root.value
         }
         val remainingSum = targetSum - root.value
         return hasPathSum(root.left, remainingSum) || hasPathSum(root.right, remainingSum)
