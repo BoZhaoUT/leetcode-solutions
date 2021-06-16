@@ -21,3 +21,23 @@ object Solution {
         return result
     }
 }
+
+// avoid using array slicing
+object Solution {
+    def sortedArrayToBST(nums: Array[Int]): TreeNode = {
+
+        def helper(i: Int, j: Int): TreeNode = {
+            if (i > j) {
+                return null
+            }
+
+            val middle = (i + j) / 2
+            val result = new TreeNode(nums(middle))
+            result.left = helper(i, middle - 1)
+            result.right = helper(middle + 1, j)
+            return result
+        }
+
+        return helper(0, nums.length - 1)
+    }
+}
