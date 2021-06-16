@@ -8,21 +8,16 @@
  */
 object Solution {
     def sortedArrayToBST(nums: Array[Int]): TreeNode = {
-        var newNode: TreeNode = null
-
-        while (nums.length > 0) {
-            val middle = nums.length / 2
-            newNode = new TreeNode(nums(middle))
-            println(newNode.value)
-            println(nums.mkString(" "))
-            if (middle != 0) {
-                newNode.left = sortedArrayToBST(nums.slice(0, middle))
-            }
-            if (middle != nums.length - 1) {
-                newNode.right = sortedArrayToBST(nums.slice(middle + 1, nums.length - 1))
-            }
+        if (nums.length == 0) {
+            return null
         }
+        
+        val middle = nums.length / 2
+        val result: TreeNode = new TreeNode(nums(middle))
 
-        return newNode
+        result.left = sortedArrayToBST(nums.slice(0, middle))
+        result.right = sortedArrayToBST(nums.slice(middle + 1, nums.length))
+
+        return result
     }
 }
