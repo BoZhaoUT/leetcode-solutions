@@ -8,30 +8,27 @@
  */
 object Solution {
     def isBalanced(root: TreeNode): Boolean = {
-        // empty tree is balanced
-        if (root == null) {
-            return true
-        }
-        // true iff the diff of left height and right height <= 1
-        val leftHeight = getTreeHeight(root.left)
-        val isLeftBalanced = isBalanced(root.left)
-
-        val rightHeight = getTreeHeight(root.right)
-        val isRightBalanced = isBalanced(root.right)
-
-        val diff = scala.math.abs(leftHeight - rightHeight) <= 1
-
-        return isLeftBalanced && isRightBalanced && diff
+        val result = helper(root)
+        return result._2
     }
 
-    def getTreeHeight(root: TreeNode): Int = {
+    /*
+     * Return the height of a tree and whether it's balanced in a tuple
+     */
+    def helper(root: TreeNode): (Int, Boolean) = {
+        // empty tree is balanced
         if (root == null) {
-            return 0
+            return (0, true)
         }
 
-        val leftHeight = getTreeHeight(root.left)
-        val rightHeight = getTreeHeight(root.right)
+        // recursively check left and right subtrees
+        val (leftHeight, isLeftBalanced) = helper(root.left)
+        val (rightHeight, isRightBalanced) = helper(root.right)
+        
+        val height = scala.math.max(leftHeight, rightHeight) + 1
+        val heightDiff = scala.math.abs(leftHeight - rightHeight) <= 1
+        val isBalanced = isLeftBalanced && isRightBalanced && heightDiff
 
-        return scala.math.max(leftHeight, rightHeight) + 1
+        return (height, isBalanced)
     }
 }
