@@ -8,16 +8,19 @@ object Solution {
             } else if (i == 2) {
                 result = result :+ List(1, 1)
             } else {
-                // generate a new row based on the previous row
+                var currRow = List(1) : List[Int]
+                val prevRow = result.last
+                var j = 1
+                while (j < i - 1) {
+                    val newNum = prevRow(j - 1) + prevRow(j)
+                    currRow = currRow :+ newNum
+                    j = j + 1
+                }
+                currRow = currRow :+ 1
+                result = result :+ currRow
             }
             i = i + 1
         }
-
-
         return result
     }
 }
-
-
-
-println(Solution.generate(2))
