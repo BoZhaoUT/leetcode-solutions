@@ -1,20 +1,20 @@
 object Solution {
     def getRow(rowIndex: Int): List[Int] = {
-        var result = List(1)
+        // base cases
         if (rowIndex == 0) {
             return List(1)
         }
         if (rowIndex == 1) {
             return List(1, 1)
         }
-        var prevRow = List(1, 1)
+        var result = List(1, 1)
         var i = 0
-        // println("row index", rowIndex)
-        while (i <= rowIndex) {
-            // println("i", i)
+        while (i < rowIndex) {
+            var prevRow = result
+            // build a new row
             result = List(1) : List[Int]
             var j = 1
-            while (j < i - 1) {
+            while (j <= i) {
                 val newNum = prevRow(j - 1) + prevRow(j)
                 result = result :+ newNum
                 j = j + 1
@@ -25,6 +25,3 @@ object Solution {
         return result
     }
 }
-
-
-println(Solution.getRow(3))
