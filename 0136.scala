@@ -16,4 +16,16 @@ object Solution {
 
         return seen.toList(0)
     }
+
+    // O(n) time, O(1) space
+
+    // all number with even number of occurrences cancel their toggle of the result
+    // only the single occurence number stays
+    def singleNumber2(nums: Array[Int]): Int = {
+        var result = 0
+        nums.map(num => {
+            result = result ^ num
+        })
+        return result
+    }
 }
