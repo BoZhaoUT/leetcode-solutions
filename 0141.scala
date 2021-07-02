@@ -8,20 +8,20 @@
 
 object Solution {
     def hasCycle(head: ListNode): Boolean = {
-        if (!head || !head.next) {
-            return false
-        }
-
         var slow = head
-        var fast = head.next
+        var fast = head
 
         var result = false
 
-        while (slow != null && fast != null) {
-            
+        while (!result && fast != null && fast.next != null) {
+            fast = fast.next
+            // check cycle
+            if (fast == slow) {
+                result = true
+            }
+            slow = slow.next
+            fast = fast.next
         }
-
         return result
-        
     }
 }
