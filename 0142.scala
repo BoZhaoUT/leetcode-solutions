@@ -11,19 +11,39 @@ object Solution {
         var slow = head
         var fast = head
 
-        var prev: ListNode = null
-        var result: ListNode = null
-
-        while (result == null && fast != null && fast.next != null) {
-            prev = fast
-            fast = fast.next
-            // check cycle
-            if (fast == slow) {
-                result = prev
-            }
+        while (fast != null && fast.next != null && fast.next.next != null) {
             slow = slow.next
-            fast = fast.next
+            fast = fast.next.next
+            // a cycle occured
+            if (slow == fast) {
+                // put slow back to head
+                slow = head
+                while (slow != fast) {
+                    slow = slow.next
+                    fast = fast.next
+                }
+                return slow
+            }
         }
-        return result
+        return null
     }
 }
+
+
+// var detectCycle = function(head){
+//     let slow = head;
+//     let fast = head;
+//     while(fast && fast.next && fast.next.next){
+//         slow = slow.next;
+//         fast = fast.next.next;
+//         if(slow === fast){
+//             slow = head;
+//             while(slow !== fast){
+//                 slow = slow.next;
+//                 fast = fast.next;
+//             }
+//             return slow;
+//         }
+//     }
+//     return null;
+// }
