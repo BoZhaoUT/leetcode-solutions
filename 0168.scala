@@ -4,15 +4,17 @@ object Solution {
         var num = columnNumber
         while (num > 0) {
             num -= 1
-            val char = num % 26
-            num = num / 26
+            val digit = num % 26
+            val char = (digit + 65).toChar
             result = char + result
+            num = num / 26
         }
         return result
     }
 }
 
-// Solution.convertToTitle(28)
+// println(Solution.convertToTitle(2))
+// println(Solution.convertToTitle(28))
 
 
 // explanation
