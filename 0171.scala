@@ -3,13 +3,13 @@ object Solution {
         var result = 0
         var i = 0
         while (i < columnTitle.length) {
-            val multiplier = 10 ^ (columnTitle - i)
+            val multiplier = scala.math.pow(10, (columnTitle.length - i))
             val value = columnTitle(i).toInt - 65
-            result += value
+            println(multiplier, value)
+            result = value * multiplier + result
+            i += 1
         }
 
-        return result
+        return result + 1
     }
 }
-
-println(Solution.titleToNumber("ABC"))
