@@ -1,6 +1,6 @@
 object Solution {
     def trailingZeroes(n: Int): Int = {
-        return if (n == 0) 0 else n / 5 + Solution.trailingZeroes(n)
+        if (n == 0) 0 else n / 5 + trailingZeroes(n / 5)
     }
 
     // overflow
@@ -32,6 +32,8 @@ object Solution {
 // println(Solution.trailingZeroes(2)) // 0
 // println(Solution.trailingZeroes(3)) // 0
 // println(Solution.trailingZeroes(4)) // 0
-println(Solution.trailingZeroes(5)) // 1
+// println(Solution.trailingZeroes(5)) // 1
 // println(Solution.trailingZeroes(13)) // 2
 
+// explanation
+// https://leetcode.com/problems/factorial-trailing-zeroes/discuss/355808/JavaScript-solution-with-explanation
