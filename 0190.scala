@@ -1,16 +1,21 @@
 object Solution {
     // you need treat n as an unsigned value
     def reverseBits(x: Int): Int = {
-        val str = x.toString
-
         val bits = Array[Int](32)
         var num = Math.floor(num / 2)
 
         var i = 0
         for (i <- 0 to 15) {
-            bits[32 - i] = x % 2
+            bits(32 - i) = x % 2
             num = Math.floor(num / 2)
         }
+
+        for (i <- 0 to 15) {
+            val temp = bits(i)
+            bits(i) = bits(31 - i)
+            bits(31 - i) = temp
+        }
+
         return 0
     }
 }
