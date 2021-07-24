@@ -1,34 +1,19 @@
 object Solution {
     // you need treat n as an unsigned value
     def reverseBits(x: Int): Int = {
-        val bits = Array[Int](32)
-        var num = Math.floor(num / 2)
-
+        var num: Int = x
         var i = 0
-        for (i <- 0 to 15) {
-            bits(32 - i) = x % 2
-            num = Math.floor(num / 2)
+        var reversed = ""
+        // convert x from Int to String and reverse it
+        // x.toString doesn't work because Int.toString implicitly interpet x as a decimal number
+        for (i <- 0 to 31) {
+            // grab the last digit
+            reversed += (num % 2).toString
+            // get rid of the last digit
+            num = num / 2
         }
-
-        for (i <- 0 to 15) {
-            val temp = bits(i)
-            bits(i) = bits(31 - i)
-            bits(31 - i) = temp
-        }
-
-        return 0
+        // it throws "java.lang.NumberFormatException"
+        // toInt only works for int has at most 8 or 9 digits
+        return reversed.toInt 
     }
 }
-
-// var reverseBits = function(n) {
-//     const bits = new Array(32).fill(0);
-//     let idx = 1;
-//     while (n) {
-//         bits[32 - idx++] = n % 2;
-//         n = Math.floor(n / 2);
-//     }
-//     return parseInt(bits.reverse().join(''), 2);
-// };
-
-println(Solution.reverseBits(00000010100101000001111010011100))
-// println(Solution.reverseBits(11111111111111111111111111111101))
