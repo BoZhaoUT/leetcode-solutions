@@ -2,19 +2,22 @@ import scala.collection.mutable.Set
 
 object Solution {
     def isHappy(n: Int): Boolean = {
-        var seen = Set.empty[Int]
+        val seen = Set.empty[Int]
         var num = n
-        while (n != 1 && !seen.contains(n)) {
-            seen += n
+        while (num != 1 && !seen.contains(num)) {
+            seen += num
             num = sumOfSquares(num)
         }
-        return n == 1
+        return num == 1
     }
 
     def sumOfSquares(num: Int): Int = {
-        return num.toString.reduce((sum, digit) => {
-            return sum + scala.math.pow(digit, 2).toInt
+        var sum = 0
+        num.toString.map(digit => {
+            // toInt doesn't work because it converts '1' to 49 and '2' to 50 (based on ASCII table)
+            sum += scala.math.pow(digit.asDigit, 2).toInt
         })
+        return sum
     }
 }
 
