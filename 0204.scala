@@ -5,10 +5,18 @@ object Solution {
         }
         var result = 0
         val seen = Array.fill(n)(false)
-        println(seen.mkString(""))
-        var i = 2
-        for (i <- 2 to n) {
-            println(i)
+        var num = 2
+        for (num <- 2 until n) {
+            if (!seen(num)) {
+                result += 1
+                var power = 1
+                var product = num
+                while (product < n) {
+                    product = scala.math.pow(num, power).toInt
+                    seen(product) = true
+                    power += 1
+                }
+            }
         }
 
         return result
