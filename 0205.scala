@@ -1,4 +1,4 @@
-import scala.collection.mutable.Map
+import scala.collection.mutable.{HashMap, HashSet}
 
 object Solution {
     def isIsomorphic(s: String, t: String): Boolean = {
@@ -6,17 +6,27 @@ object Solution {
             return false
         }
 
-        val charMap = Map[Char, Char]()
+        val charMap = HashMap[Char, Char]()
+        // mappedChar keeps the values of charMap
+        // it makes sure each char in t has only 1 association
+        // with a char in s
+        val tChars = HashSet[Char]()
 
         var i = 0
         var result = true
         while (i < s.length && !result) {
-            
-            println(charMap)
-            if (charMap(s(i)) == t(i)) {
+            val sChar = s(i)
+            var tChar = t(i)
+            // 
+            if (charMap(sChar) == tChar) {
                 i += 1
             } else {
-                result = false
+                if (tChars.contains(tChar)) {
+                    result = false
+                } else {
+                    charMap(sChar) = tChar
+                    i += 1
+                }
             }
         }
 
@@ -25,4 +35,5 @@ object Solution {
 }
 
 println(Solution.isIsomorphic("egg", "add")) // true
-println(Solution.isIsomorphic("egg", "abc")) // true
+println(Solution.isIsomorphic("egg", "abc")) // false
+println(Solution.isIsomorphic("foo", "bar")) // false
