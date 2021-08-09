@@ -17,13 +17,15 @@ object Solution {
         while (i < s.length && !result) {
             val sChar = s(i)
             var tChar = t(i)
-            // 
             if (charMap(sChar) == tChar) {
+                println("existing s -> t", sChar, tChar)
                 i += 1
             } else {
                 if (tChars.contains(tChar)) {
+                    println("redundant mapping", sChar, tChar)
                     result = false
                 } else {
+                    println("new mapping", sChar, tChar)
                     charMap(sChar) = tChar
                     i += 1
                 }
@@ -34,6 +36,6 @@ object Solution {
     }
 }
 
-println(Solution.isIsomorphic("egg", "add")) // true
+// println(Solution.isIsomorphic("egg", "add")) // true
 println(Solution.isIsomorphic("egg", "abc")) // false
-println(Solution.isIsomorphic("foo", "bar")) // false
+// println(Solution.isIsomorphic("foo", "bar")) // false
