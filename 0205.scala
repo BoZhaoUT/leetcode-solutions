@@ -14,28 +14,29 @@ object Solution {
 
         var i = 0
         var result = true
-        while (i < s.length && !result) {
+        while (i < s.length && result) {
             val sChar = s(i)
             var tChar = t(i)
-            if (charMap(sChar) == tChar) {
-                println("existing s -> t", sChar, tChar)
+            // existing mapping
+            if (charMap.contains(sChar) && charMap(sChar) == tChar) {
                 i += 1
             } else {
-                if (tChars.contains(tChar)) {
-                    println("redundant mapping", sChar, tChar)
+                if (charMap.contains(sChar) || tChars.contains(tChar)) {
                     result = false
                 } else {
-                    println("new mapping", sChar, tChar)
                     charMap(sChar) = tChar
+                    tChars.add(tChar)
                     i += 1
                 }
             }
+
+            if (charMap.contains)
         }
 
         return result
     }
 }
 
-// println(Solution.isIsomorphic("egg", "add")) // true
+println(Solution.isIsomorphic("egg", "add")) // true
 println(Solution.isIsomorphic("egg", "abc")) // false
-// println(Solution.isIsomorphic("foo", "bar")) // false
+println(Solution.isIsomorphic("foo", "bar")) // false
