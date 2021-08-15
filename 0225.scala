@@ -1,28 +1,34 @@
+import scala.collection.mutable.Array
+
 class MyStack() {
 
     /** Initialize your data structure here. */
-    var firstQueue = Array()
-    var secondQueue = Array()
-    
+    val queue = Array[Int]()
 
     /** Push element x onto stack. */
     def push(x: Int) {
-        this.firstQueue += x
+        this.queue :+ x
+        val queueLength = this.queue.length
+        for (i = 0; )
     }
 
     /** Removes the element on top of the stack and returns that element. */
     def pop(): Int = {
-        
+        this.queue.drop(1)
     }
 
     /** Get the top element. */
     def top(): Int = {
-        
+        this.queue.head
     }
 
     /** Returns whether the stack is empty. */
     def empty(): Boolean = {
-        this.firstQueue.length == 0 && this.secondQueue.length == 0
+        this.queue.isEmpty
+    }
+
+    def size(): Int = {
+        this.queue.length
     }
 
 }
