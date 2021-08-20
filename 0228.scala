@@ -3,15 +3,24 @@ object Solution {
         if (nums.length == 0) {
             return List()
         }
-        var result = Array()
-        var rangeStart = 
-        nums.map(num => {
-            var beginning = num
-            // if the next num = current + 1
-                // continue current range
-            // else
-                // close it
-        })
+        var result = List()
+        var rangeStart = nums(0)
+        var rangeEnd = nums(0)
+        nums.zipWithIndex.map{
+            case (num, i) => {
+                if (num == rangeEnd + 1) {
+                    rangeEnd += 1
+                } else if (num > rangeEnd + 1) {
+                    // single num
+                    if (rangeStart == rangeEnd) {
+                        result = result :+ rangeStart.toString
+                    } else {
+                        // range
+                        result = result :+ rangeStart.toString + "->" + rangeEnd.toString
+                    }
+                }
+            }
+        }
         return result
     }
 }
