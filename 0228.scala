@@ -4,34 +4,14 @@ object Solution {
             return List()
         }
         var result = List[String]()
-        var rangeStart = nums(0)
-        var rangeEnd = nums(0)
+        var rangeStart = 0
+        var rangeEnd = 0
         var i = 0
-        while (i < nums.length + 1) {
-            val num = nums(i)
-            if (num == rangeEnd + 1) {
+        while (i < nums.length) {
+            while (nums(i) == nums(i + 1)) {
                 rangeEnd += 1
-            } else if (num > rangeEnd + 1) {
-                
             }
         }
-        // nums.zipWithIndex.map{
-        //     case (num, i) => {
-        //         println("num", num, "i", i)
-        //         if (num == rangeEnd + 1) {
-        //             rangeEnd += 1
-        //         } else if (num > rangeEnd + 1) {
-        //             // single num
-        //             if (rangeStart == rangeEnd) {
-        //                 result = result :+ rangeStart.toString
-
-        //             } else {
-        //                 // range
-        //                 result = result :+ rangeStart.toString + "->" + rangeEnd.toString
-        //             }
-        //         }
-        //     }
-        // }
         return result
     }
 }
