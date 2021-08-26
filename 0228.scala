@@ -9,15 +9,16 @@ object Solution {
         var i = 0
         while (i < nums.length) {
             val num = nums(i)
-            // if (num <= rangeEnd + 1) {
-            //     rangeEnd = num
-            // }
+            // continue existingrange
+            if (num <= rangeEnd + 1) {
+                rangeEnd = num
+            }
 
             // found beginning of a new range
-            // because 2147483647 > 2147483647 + 1 is true
+            // adding rangeEnd != 2147483647 because 
+            // 2147483647 > 2147483647 + 1 is true in Scala
             if (num > rangeEnd + 1 && rangeEnd != 2147483647) {
-                rangeEnd = num
-                // single number range
+                // rangeEnd = num
                 if (rangeStart == rangeEnd) {
                     result = result :+ rangeStart.toString
                 } else {
