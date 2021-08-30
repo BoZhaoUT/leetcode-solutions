@@ -10,11 +10,13 @@ class MyQueue() {
             val element = this.stack(this.stack.length - 1)
             this.temp = this.temp.dropRight(1)
         }
+        println(this.stack.mkString(" "))
         while (this.temp.length > 0) {
-            val element = this.temp.(this.stack.length - 1)
+            val element = this.temp(this.stack.length - 1)
             this.stack = this.stack.dropRight(1)
         }
-        println(this.stack)
+        this.stack = this.stack :+ x
+        println(this.stack.mkString(" "))
     }
 
     /** Removes the element from in front of queue and returns that element. */
@@ -44,8 +46,10 @@ class MyQueue() {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
-var obj = new MyQueue()
-obj.push(x)
+var myQueue = new MyQueue()
+myQueue.push(1)
+myQueue.push(2)
+myQueue.push(3)
 
 // var param_2 = obj.pop()
 // var param_3 = obj.peek()
