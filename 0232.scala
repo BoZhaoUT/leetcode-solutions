@@ -11,6 +11,7 @@ class MyQueue() {
 
     /** Removes the element from in front of queue and returns that element. */
     def pop(): Int = {
+        // putting everything in s1 into s2 when s2 is empty
         if (s2.length == 0) {
             while (s1.length > 0) {
                 val element = s1(s1.length - 1)
@@ -20,10 +21,12 @@ class MyQueue() {
         }
         val result = s2(s2.length - 1)
         s2 = s2.dropRight(1)
+        return result
     }
 
     /** Get the front element. */
     def peek(): Int = {
+        // putting everything in s1 into s2 when s2 is empty
         if (s2.length == 0) {
             while (s1.length > 0) {
                 val element = s1(s1.length - 1)
@@ -48,11 +51,11 @@ class MyQueue() {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
-var myQueue = new MyQueue()
-myQueue.push(1)
-myQueue.push(2)
-myQueue.push(3)
-println(myQueue.peek())
+// var myQueue = new MyQueue()
+// myQueue.push(1)
+// myQueue.push(2)
+// myQueue.push(3)
+// println(myQueue.peek())
 
 // var param_2 = obj.pop()
 // var param_3 = obj.peek()
