@@ -6,18 +6,21 @@
  *   var right: TreeNode = null
  * }
  */
+import scala.annotation.tailrec
 
 object Solution {
+    @tailrec
     def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode): TreeNode = {
-        return findLowestCommonAncestor(root, p, q)
-    }
-
-    def findLowestCommonAncestor(root: TreeNode, p: TreeNode | Unit, q: TreeNode | Unit) = {
-        val newP = if (p == root) Unit else p
-        val newQ = if (q == root) Unit else q
-        if (newP == Unit && newQ == Unit) {
+        // p and q are in the left sub tree
+        if (p.value < root.value && q.value < root.value) {
+            return lowestCommonAncestor(root.left, p, q)
+        } else if (root.value < p.value && root.value < q.value) {
+            // p and q are in the right sub tree
+            return lowestCommonAncestor(root.right, p, q)
+        } else {
+            // case 1: p or q is the root
+            // case 2: p and q are not in the same sub tree
             return root
         }
-        return findLowestCommonAncestor(root.left, newP, newQ) || findLowestCommonAncestor(root.right, newP, newQ)
     }
 }
