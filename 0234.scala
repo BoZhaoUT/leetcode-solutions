@@ -15,8 +15,6 @@ object Solution {
             fast = fast.next.next
         }
         println(slow.x)
-        // even or odd
-        var isEven = fast == null
         // reverse the 2nd half
 
 
@@ -28,10 +26,14 @@ object Solution {
 
     def reverse(head: ListNode, prev: ListNode = null): ListNode = {
         if (head == null) {
+            println("null")
             return prev
         }
+        println(head.x)
+        val tail = reverse(head.next, head)
+        tail.next = head
         head.next = prev
-        reverse(head.next, prev)
+        return tail
     }
 }
 
