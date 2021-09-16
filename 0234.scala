@@ -16,13 +16,15 @@ object Solution {
         }
         // reverse the 2nd half
         val reversed = reverse(slow)._1
+        // first and second half of the linked list
+        var first = head
+        var second = reversed
         // compare
-        while (head != null && reversed != null && head.x == reversed.x) {
-            head = head.next
-            reversed = reversed.next
+        while (second != null && first.x == second.x) {
+            first = first.next
+            second = second.next
         }
-        // un-reverse the 2nd half if needed
-        return head == null && reversed == null
+        return second == null
     }
 
     // return head and tail of a reversed linked list
@@ -47,8 +49,8 @@ object Solution {
 //     var x: Int = _x
 // }
 
-// val four = new ListNode(4)
-// val three = new ListNode(3, four)
+// val four = new ListNode(1)
+// val three = new ListNode(2, four)
 // val two = new ListNode(2, three)
 // val one = new ListNode(1, two)
 
@@ -59,11 +61,5 @@ object Solution {
 // println(one.next.next.next.next)
 
 
-// val reversed = Solution.reverse(one)
-
-
-
-// println(reversed._1.x)
-// println(reversed._1.next.x)
-// println(reversed._1.next.next.x)
-// println(reversed._1.next.next.next.x)
+// var result = Solution.isPalindrome(one)
+// println(result)
