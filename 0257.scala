@@ -8,23 +8,24 @@
  */
 object Solution {
     def binaryTreePaths(root: TreeNode): List[String] = {
+        // leaf
+        if (root.left == null && root.right == null) {
+            return List(root.value.toString)
+        }
         var result = List[String]()
-        val path = root.value.toString
-        buildPath(root, path, result)
-        return result
-    }
-    
-    def buildPath(root: TreeNode, path: String, paths: List[String]): String = {
         if (root.left != null) {
-            val newPath += "->" + root.left.value.toString
-            return buildPath(root.left, path, paths)
+            result = result ++ binaryTreePaths(root.left).map(path => {
+                root.value.toString + "->" + path
+            })
         }
         if (root.right != null) {
-            val newPath += "->" + root.right.value.toString
-            buildPath(root.right, path, paths)
+            result = result ++ binaryTreePaths(root.right).map(path => {
+                root.value.toString + "->" + path
+            })
         }
-        if (root.left == null && root.right = null) {
-            paths :+ path  
-        }
+        return result
     }
 }
+
+// https://leetcode.com/problems/binary-tree-paths/discuss/328264/Simple-javascript-solution-with-explanation
+
