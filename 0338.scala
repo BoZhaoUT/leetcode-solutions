@@ -1,8 +1,19 @@
 object Solution {
     def countBits(n: Int): Array[Int] = {
-
+        val result = new Array[Int](n + 1)
+        result(0) = 0
+        var offset = 1;
+        for (i <- 1 to n) {
+            if (offset * 2 == i) {
+                offset = offset * 2
+            }
+            result(i) = result(i - offset) + 1
+        }
+        return result
     }
 }
+
+// println(Solution.countBits(2).mkString(" ")) // [0, 1, 1]
 
 // public int[] countBits(int num) {
 //     int result[] = new int[num + 1];
