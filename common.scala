@@ -19,3 +19,12 @@ array = array +: 1
 // index for loop
 // for (i <- 1 to 5) {
 // }
+
+// check a type in Scala console
+// :type 2
+
+// take the frist n characters from a string
+"abcde".take(3) // "abc"
+"abcde".take(99) // "abcde"
+
+// p31
