@@ -27,4 +27,31 @@ array = array +: 1
 "abcde".take(3) // "abc"
 "abcde".take(99) // "abcde"
 
-// p31
+// infix operator notatoin (only works with method take exactly 1 param)
+"abcde" take 3 // value.method(param) <=> value method param
+
+null // has its own type of Null. Using nulll in Scala is considered bad practice
+
+Unit // can also be written as () or {}
+
+// create an empty object with name Bob
+// this is an unuseful object
+object Alice {}
+
+object Bob {
+  // fields
+  val firstName: String = "Bob"
+  var age: Int = 10
+  
+
+  // methods
+  def name: String = "bob's first method" // method without param
+
+  def hello(name: String): String = "Hello " + name // method with param
+}
+
+println(Bob.name) // bob's first method
+println(Bob.hello("little Bob")) // Hello little Bob
+
+
+// p44
