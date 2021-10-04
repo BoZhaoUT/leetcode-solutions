@@ -52,6 +52,23 @@ object Bob {
 
 println(Bob.name) // bob's first method
 println(Bob.hello("little Bob")) // Hello little Bob
+// Bob.type can be used as its type
 
+
+// for method overloading - Scala can automatically only incrase the precision
+// e.g. Object.square(value: Double) can be called as Object.square(2)
+// the other way doesn't work
+// e.g. Object.square(value: Int) cannot be used as Object.square(2.0), it throws an error
+
+
+
+object Person {
+  val firstName = "first"
+  val lastName = "last"
+}
+
+object Alien {
+  def greet(person: Person.type): String = "Hello " + person.firstName 
+}
 
 // p44
