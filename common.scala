@@ -71,4 +71,7 @@ object Alien {
   def greet(person: Person.type): String = "Hello " + person.firstName 
 }
 
-// p44
+// Scala built-in test library
+// assert(square(2.0) == 4.0)
+
+// p57
