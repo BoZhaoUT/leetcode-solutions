@@ -74,4 +74,29 @@ object Alien {
 // Scala built-in test library
 // assert(square(2.0) == 4.0)
 
-// p57
+
+// class with contructor
+class Person(first: String, last: String) {
+  val firstName = first
+  val lastName = last
+  def name = firstName + " " + lastName
+}
+
+// class with short-hand contructor
+class Person(val firstName: String, val lastName: String) {
+  def name = firstName + " " + lastName
+}
+
+
+// class with short-hand contructor and default values
+class Person(val firstName: String = "Bob", val lastName: String = "B") {
+  def name = firstName + " " + lastName
+}
+
+
+
+
+// p69
+class Adder(amount: Int) {
+  def apply(in: Int): Int = in + amount
+}
