@@ -96,7 +96,15 @@ class Person(val firstName: String = "Bob", val lastName: String = "B") {
 
 
 
-// p69
+// the apply method
 class Adder(amount: Int) {
+  // this is a special method, it makes object.method(param) becomes object(param)
   def apply(in: Int): Int = in + amount
 }
+
+val myAdder = new Adder(3)
+myAdder.apply(2) // 5
+myAdder(4) // 7
+
+
+// p70
