@@ -107,4 +107,14 @@ myAdder.apply(2) // 5
 myAdder(4) // 7
 
 
-// p70
+// Scala static methods
+class Timestamp(val seconds: Long)
+
+// Scala use a "companion object" to define static methods
+// this object Timestamp is also called a singleton object
+object Timestamp {
+  def apply(hours: Int, minutes: Int, seconds: Int): Timestamp
+    = new Timestamp(hours * 60 * 60 + minutes * 60 + seconds)
+}
+
+// 71
