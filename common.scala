@@ -117,4 +117,19 @@ object Timestamp {
     = new Timestamp(hours * 60 * 60 + minutes * 60 + seconds)
 }
 
-// 71
+
+class Person(val firstName: String, val lastName: String) {
+  def name: String = s"$firstName $lastName"
+}
+
+object Person {
+  def apply(val name): Person {
+    val parts = name.split(" ")
+    new Person(parts[0], parts[1])
+  }
+}
+
+val newPerson = Person.apply("John Doe") // long syntax
+val newPerson2 = Person("John Doe") // short syntax using the apply magic
+
+// 74
