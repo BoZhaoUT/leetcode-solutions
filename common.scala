@@ -132,4 +132,20 @@ object Person {
 val newPerson = Person.apply("John Doe") // long syntax
 val newPerson2 = Person("John Doe") // short syntax using the apply magic
 
-// 74
+
+// case class has the following built-in features
+// 1. this.param for each constructor param
+// 2. a human readable toString method
+// 3. .equals and == compare constructor params
+// 4. copy method that create a new objec with teh same constructor params
+case class Person(firstName: String, lastName: String) { 
+  def name = firstName + " " + lastName
+}
+
+// case object is used when there is a case class with on constructor
+case object Citizen {
+  def firstName = "John"
+  def lastName  = "Doe"
+  def name = firstName + " " + lastName
+}
+
