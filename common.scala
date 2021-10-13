@@ -149,3 +149,24 @@ case object Citizen {
   def name = firstName + " " + lastName
 }
 
+
+// trait is similar to Java's interface and abstract class
+trait Visitor {
+  def id: String
+  def createdAt: Date
+  def ageOnSite: Long = new Date().getTime - createdAt.getTime
+}
+
+case class Anonymous(
+  id: String,
+  createdAt: Date = new Date()
+) extends Visitor
+
+case class User(
+  id: String,
+  email: String,
+  createdAt: Date = new Date()
+) extends Visitor
+
+
+// p89
