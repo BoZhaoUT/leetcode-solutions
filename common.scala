@@ -169,4 +169,16 @@ case class User(
 ) extends Visitor
 
 
-// p89
+// sealed class
+// when a trailt is marked as seal, then all class extends this trait must
+// be defined in the same file
+// sealed works similar to val for values
+sealed trait Visitor {
+  def id: String
+}
+
+// by default the case class User can be extended (regardless its parent is sealed or not)
+// marking it as final means User class cannot be extended
+final case class User extends Visitor
+
+// p96
