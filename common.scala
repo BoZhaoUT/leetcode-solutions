@@ -181,4 +181,7 @@ sealed trait Visitor {
 // marking it as final means User class cannot be extended
 final case class User extends Visitor
 
+
+// a trait extend more than 1 parent traits
+trait A extends B with C with D
 // p96
