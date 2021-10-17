@@ -185,3 +185,22 @@ final case class User extends Visitor
 // a trait extend more than 1 parent traits
 trait A extends B with C with D
 // p96
+
+
+// tail recursion and switch statement
+import scala.annotation.tailrec
+@tailrec
+def sum(list: IntList): Int =
+  list match {
+    case End => 0
+    case Pair(head, tail) => head + sum(tail) // this is not a tail rec because it has "head + "
+  }
+
+// optimize it into tail recursion
+def sum(list: IntList, total: Int = 0): Int =
+  list match {
+    case End => total
+    case Pair(head, tail) => sum(tail, total + head)
+  }
+
+// p118
