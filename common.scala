@@ -229,4 +229,9 @@ this match {
 case object End extends IntList
 final case class Pair(head: Int, tail: IntList) extends IntList
 
-// p122
+
+// A is a generic type. it's called a type parameter
+final case class Box[A](value: A)
+
+
+// p133
