@@ -234,4 +234,8 @@ final case class Pair(head: Int, tail: IntList) extends IntList
 final case class Box[A](value: A)
 
 
-// p133
+// function with multiple paramete
+def example(x: Int)(y: Int) = x + y // this is not a higher order function like javascript
+example(1)(2) // 3
+// res3: Int = 3
+// p140
