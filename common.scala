@@ -238,4 +238,11 @@ final case class Box[A](value: A)
 def example(x: Int)(y: Int) = x + y // this is not a higher order function like javascript
 example(1)(2) // 3
 // res3: Int = 3
-// p140
+
+// destructure tuple
+(1, "a") match {
+  case (a, b) => a + b // 1a
+  // no need to write (a, b)._1 + (a, b)._2
+}
+
+// p146
