@@ -203,29 +203,6 @@ def sum(list: IntList, total: Int = 0): Int =
     case Pair(head, tail) => sum(tail, total + head)
   }
 
-
-sealed trait IntList {
-  def length: Int =
-    this match {
-      case End => 0
-      case Pair(hd, tl) => 1 + tl.length
-    }
-  def double: IntList =
-    this match {
-      case End => End
-      case Pair(hd, tl) => Pair(hd * 2, tl.double)
-    }
-  def product: Int =
-    this match {
-      case End => 1
-      case Pair(hd, tl) => hd * tl.product
-    }
-  def sum: Int =
-this match {
-  case End => 0
-      case Pair(hd, tl) => hd + tl.sum
-    }
-}
 case object End extends IntList
 final case class Pair(head: Int, tail: IntList) extends IntList
 
@@ -245,4 +222,3 @@ example(1)(2) // 3
   // no need to write (a, b)._1 + (a, b)._2
 }
 
-// p146
