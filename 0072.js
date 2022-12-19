@@ -3,31 +3,42 @@
  * @param {string} word2
  * @return {number}
  */
-var minDistance = function(word1, word2) {
-    const m = word1.length
-    const n = word2.length
-    const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(0))
-    // base case, convert word1 to empty string
-    for (let i = 1; i <= m; i++) {
-        dp[i][0] = i
-    }
-    // base case, conver empty string to word2
-    for (let j = 1; j <= n; j++) {
-        dp[0][j] = j
-    }
-    // general case
-    for (let i = 1; i <= m; i++) {
-        for (let j = 1; j <= n; j++) {
-            if (word1[i - 1] === word2[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1]
-            } else {
-                let replaceChar = dp[i - 1][j - 1] + 1
-                let left = dp[i][j - 1] + 1
-                let top = dp[i - 1][j] + 1
-                dp[i][j] = Math.min(replaceChar, left, top);
-            }
-        }
-    }
-    return dp[m][n]
-};
+const minDistance = (word1, word2) => {
+  const numRows = word1.length
+  const numCols = word2.length
+  // the the difference between word1[0, i] and word2[0, j]
+  const dp = Array(numRows + 1)
+    .fill()
+    .map(() => Array(numCols + 1).fill(0))
 
+  // the difference between word1[0, i] and empty string is i
+  for (let rowIndex = 1; rowIndex <= numRows; rowIndex++) {
+    dp[rowIndex][0] = rowIndex
+  }
+
+  // the difference between empty string and word2[0, j] is j
+  for (let colIndex = 1; colIndex <= numCols; colIndex++) {
+    dp[0][colIndex] = colIndex
+  }
+
+  // start from bottom left corner, calculate the smalleset the
+  // difference for each operation
+  for (let rowIndex = 1; rowIndex <= numRows; rowIndex++) {
+    for (let colIndex = 1; colIndex <= numCols; colIndex++) {
+      // the 2 words have the same char at given indices
+      if (word1[rowIndex - 1] === word2[colIndex - 1]) {
+        dp[rowIndex][colIndex] = dp[rowIndex - 1][colIndex - 1]
+      } else {
+        // the words have different chars
+        const replaceChar = dp[rowIndex - 1][colIndex - 1] + 1
+        const left = dp[rowIndex][colIndex - 1] + 1
+        const top = dp[rowIndex - 1][colIndex] + 1
+        dp[rowIndex][colIndex] = Math.min(replaceChar, left, top)
+      }
+    }
+  }
+  return dp[numRows][numCols]
+}
+
+console.log(minDistance('horse', 'ros')) // 3
+console.log(minDistance('intention', 'execution')) // 5
