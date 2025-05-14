@@ -14,24 +14,22 @@
 const guessNumber = (n) => {
   let lower = 1
   let higher = n
-  while (true) {
-
+  while (lower <= higher) {
     const newGuess = Math.floor((lower + higher) / 2)
-    console.log({ lower, higher, newGuess})
     const result = guess(newGuess)
     if (result === 0) {
       return newGuess
     }
     if (result === -1) {
-      higher = newGuess
+      higher = newGuess - 1
     } else {
-      lower = newGuess
+      lower = newGuess + 1
     }
   }
 };
 
 const guess = (n) => {
-  const picked = 1
+  const picked = 2
   if (n === picked) {
     return 0
   }
@@ -43,4 +41,4 @@ const guess = (n) => {
   }
 }
 
-console.log(guessNumber(10))
+console.log(guessNumber(2))
