@@ -1,61 +1,59 @@
 /**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
+ * @param {string} s
+ * @return {string[]}
  */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-const sumNumbers = (root) => {
-  const numbers = helper(root)
-  let result = 0
-  numbers.forEach(number => {
-    result += parseInt(String(root.val) + number)
-  })
-  return result
-};
-
-const helper = (root) => {
-  if (!root.left && !root.right) {
-    return [String(root.val)]
+const restoreIpAddresses = (s) => {
+  if (s.length < 4 || s.length > 12) {
+    return false
   }
   const result = []
-  if (root.left) {
-    const leftNumbers = helper(root.left)
-    console.log({leftNumbers})
-    leftNumbers.forEach(number => {
-      result.push(String(root.val) + number)
-    })
+
+  const buildSegment = (startingIndex, partialIp) => {
+    if (partialIp.length === 4 && startingIndex > s.length) {
+      return
+    }
+    if (partialIp.length === 4 && startingIndex === s.length) {
+      return validIps.push(partialIp.join("."))
+    }
+    for (let i = 1; i <= 3; i++) {
+      const endIndex = startingIndex + i
+      if (endIndex <= s.length) {
+        const segmentCandidate = s.substring(startingIndex, endIndex)
+        if (isValidSegment(segmentCandidate)) {
+          partialIp.push(segmentCandidate)
+          buildSegment(endIndex, partialIp)
+        }
+      }
+    }
   }
-  if (root.right) {
-    const rightNumbers = helper(root.right)
-    console.log({rightNumbers})
-    rightNumbers.forEach(number => {
-      result.push(String(root.val) + number)
-    })
-  }
+
+  buildSegment(0, [])
 
   return result
+};
+
+// helper function
+// knows how many segments have been decided 0, 1, 2, 3, 4. 
+// knows which is the next digit to to start a segment
+// try to recursively call itself with 1 - 3 nums
+// knows how to skip impossible scenarios
+// optinal: check the number of remaining digits vs remaining segments needs to be built
+
+// return false if it's impossible ton continue building the next segment
+
+
+
+const isValidSegment = (s) => {
+  if (s.length === 1) {
+    return true
+  }
+  if (s.length === 2) {
+    return s[0] !== 0
+  }
+  if (s.length === 3) {
+    return s[0] !== 0 && parseInt(s) <= 255
+  }
+  return false
 }
 
-
-const sumNumbers2 = (root) => {
-  const dfs = (node, currentSum) => {
-    if (!node) return 0;
-    
-    const newSum = currentSum * 10 + node.val;
-    
-    // leaf
-    if (!node.left && !node.right) {
-      return newSum;
-    }
-
-    return dfs(node.left, newSum) + dfs(node.right, newSum);
-  };
-
-  return dfs(root, 0);
-};
+console.log(restoreIpAddresses["0000"]) // ["0.0.0.0"]
