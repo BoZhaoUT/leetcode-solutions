@@ -1,4 +1,4 @@
-class TreeNode {
+export class TreeNode {
     constructor(val, left = null, right = null) {
         if (typeof val === "number") { // single node
             this.val = val
@@ -87,7 +87,8 @@ class TreeNode {
     }
 }
 
-module.exports = TreeNode
+
+// import { TreeNode } from './tree.js';
 
 // const tree = new TreeNode([3,9,20,null,null,15,7])
 // console.log(tree.levelOrder())
