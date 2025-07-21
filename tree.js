@@ -15,20 +15,29 @@ export class TreeNode {
     }
 
     fromList(values) {
-        let i = values.length - 1
-        let nodes = new Array(values.length).fill(null)
-        while (i >= 0) {
-            if (values[i] !== null) {
-                const leftChild = nodes[2 * i + 1] || null
-                const rightChild = nodes[2 * i + 2] || null
-                const newNode = new TreeNode(values[i], leftChild, rightChild)
-                nodes[i] = newNode
+        const nodes = values.map(value => value === null ? null : new TreeNode(value));
+
+        let parentIndex = 0; // parent
+        let childIndex = 1; // child
+
+        while (childIndex < nodes.length) {
+            const parent = nodes[parentIndex]
+            if (parent !== null) {
+                if (childIndex < nodes.length) {
+                    parent.left = nodes[childIndex]
+                }
+                childIndex++
+                if (childIndex < nodes.length) {
+                    parent.right = nodes[childIndex];
+                }
+                childIndex++
             } else {
-                nodes[i] = null
+                parentIndex++;
             }
-            i--
+            parentIndex++
         }
-        return nodes[0]
+
+        return nodes[0];
     }
 
     levelOrder() {
