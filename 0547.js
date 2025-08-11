@@ -52,3 +52,39 @@ const findCircleNum = (cities) => {
 
 console.log(findCircleNum([[1,1,0],[1,1,0],[0,0,1]])) // 2
 console.log(findCircleNum([[1,0,0],[0,1,0],[0,0,1]])) // 3
+
+
+/**
+ * @param {number[][]} cities
+ * @return {number}
+ */
+const findCircleNum2 = (cities) => {
+  const n = cities.length
+  const visited = Array(n).fill(false)
+  let result = 0
+
+  for (let i = 0; i < n; i++) {
+    if (visited[i]) {
+      continue
+    }
+
+    result++
+
+    const citiesFromTheSameProvince = [i]
+    visited[i] = true
+
+    while (citiesFromTheSameProvince.length) {
+      const currentCityIndex = citiesFromTheSameProvince.pop()
+      const currentCity = cities[currentCityIndex]
+
+      for (let neighboorIndex = 0; neighboorIndex < n; neighboorIndex++) {
+        if (currentCity[neighboorIndex] === 1 && !visited[neighboorIndex]) {
+          visited[neighboorIndex] = true
+          citiesFromTheSameProvince.push(neighboorIndex)
+        }
+      }
+    }
+  }
+
+  return result
+}
