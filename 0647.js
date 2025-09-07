@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {number}
  */
-const countSubstrings = (s) => {
+const countSubstrings2 = (s) => {
   const n = s.length
   const dp = Array.from({ length: n}, () => Array(n))
 
@@ -25,6 +25,30 @@ const countSubstrings = (s) => {
 
   return result
 }
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+const countSubstrings = (s) => {
+  let result = 0
+
+  // start from s[start] and s[end] inclusive and gradually include more pairs
+  const expandAroundCenter = (start, end) => {
+    while (start >= 0 && end <= s.length - 1 && s[start] === s[end]) {
+      result++
+      start--
+      end++
+    }
+  }
+
+  for (let i = 0; i < s.length; i += 0.5) {
+    expandAroundCenter(Math.floor(i), Math.ceil(i))
+  }
+
+  return result
+}
+
 
 console.log(countSubstrings("abc")) // 3
 console.log(countSubstrings("aaa")) // 6
